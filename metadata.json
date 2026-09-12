@@ -1,0 +1,6 @@
+{
+  "name": "Desa Digital",
+  "description": "Aplikasi pelayanan dan administrasi desa digital: data penduduk, generator surat resmi desa otomatis, arsip digital perdes & SK, serta buku register surat masuk dan keluar.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

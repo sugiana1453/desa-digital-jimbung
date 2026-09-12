@@ -1,0 +1,171 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+}
+
+/* Print Styles for Official Indonesian Village Letters (A4 & F4 Folio Single Page Optimization) */
+@media print {
+  @page {
+    /* Critical: Set margin to 0 so the browser:
+       1) Automatically disables default header (date/title) & footer (URL/1 of 2)
+       2) Prevents double margins (does not consume 43mm of vertical space)
+       3) Lets the document fit 100% cleanly in 1 single page on both A4 & F4 */
+    size: auto;
+    margin: 0mm !important;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box !important;
+  }
+
+  html, body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-family: 'Times New Roman', Times, serif !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Reset layout wrappers so they don't clip, scroll, offset or add extra margin/padding */
+  #root,
+  #root > div,
+  .main-workspace,
+  main,
+  [class*="motion"],
+  .space-y-6,
+  .space-y-4,
+  .pb-14,
+  .pb-8,
+  .overflow-x-auto {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    overflow: visible !important;
+    min-height: auto !important;
+    height: auto !important;
+    background: transparent !important;
+    transform: none !important;
+  }
+
+  /* Target specifically the printable letter */
+  .printable-sheet {
+    display: block !important;
+    width: 100% !important;
+    max-width: 210mm !important;
+    min-height: 0 !important;
+    height: auto !important;
+    max-height: none !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: white !important;
+    font-family: 'Times New Roman', Times, serif !important;
+    font-size: var(--letter-font-size, 9.5pt) !important;
+    line-height: var(--letter-line-height, 1.28) !important;
+    color: #000000 !important;
+    page-break-after: avoid !important;
+    page-break-before: avoid !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* Specific rule for F4 dense official sheets (Kelahiran & Kematian) */
+  .printable-sheet.sheet-f4,
+  .sheet-f4 {
+    display: block !important;
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: var(--letter-font-size, 7pt) !important;
+    line-height: var(--letter-line-height, 1.15) !important;
+    padding: 5mm 8mm 4mm 8mm !important;
+    margin: 0 auto !important;
+    width: 215mm !important;
+    max-width: 215mm !important;
+    page-break-after: avoid !important;
+    page-break-before: avoid !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    height: auto !important;
+    max-height: none !important;
+  }
+
+  .printable-sheet * {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .printable-sheet table {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    font-size: inherit !important;
+    line-height: inherit !important;
+  }
+
+  .printable-sheet td {
+    padding-top: 1px !important;
+    padding-bottom: 1px !important;
+  }
+
+  /* CRITICAL: Completely hide all app chrome (sidebar, navbar, header, buttons, menus) during printing */
+  aside,
+  aside *,
+  nav,
+  nav *,
+  header,
+  header *,
+  footer,
+  footer *,
+  button,
+  .no-print,
+  .no-print *,
+  [class*="no-print"],
+  .bottom-nav,
+  .sidebar,
+  [role="navigation"],
+  [role="banner"],
+  [role="complementary"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    max-width: 0 !important;
+    max-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    overflow: hidden !important;
+    position: absolute !important;
+    left: -99999px !important;
+    top: -99999px !important;
+    pointer-events: none !important;
+  }
+}
+
+/* Custom scrollbar for mobile friendly table view */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
